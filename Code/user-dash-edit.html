@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <script src="build/runtime.b8e7bb04.js"></script>
+    <script src="build/app.74a74ff6.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="apple-mobile-web-app-title" content="TechTimer 2">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="TechTimer 2">
+    <meta name="msapplication-config" content="/browserconfig.xml">
+
+
+    <script src="build/chart.e845e930.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <title>TechTimer – Time Tracking</title>
+    <link rel="stylesheet" href="build/app.dd7cccf4.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+
+</head>
+
+<body data-title="TechTimer&#x20;&#x2013;&#x20;Time&#x20;Tracking"
+    class="hold-transition skin-blue skin-blue fixed sidebar-mini">
+    <div class="modal" id="remote_form_modal" tabindex="-1" role="dialog" aria-labelledby="remote_form_modal_label">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="remote_form_modal_label"></h4>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper">
+
+        <header class="main-header">
+            <a href="user-main.html" class="logo">
+                <span class="logo-mini">
+                    <b>TT</b>
+                </span>
+                <span class="logo-lg">
+                    <b>TechTimer</b>
+                </span>
+            </a>
+
+            <nav class="navbar navbar-static-top" role="navigation">
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <li class="messages-menu " data-api="/api/timesheets/active"
+                            data-href="/api/timesheets/000/stop" data-icon="far fa-stop-circle" style="display:none">
+                            <div class="ddt-small ticktac-single ticktac-running">
+                                <div class="ticktac-stop">
+                                    <a accesskey="s" data-replacer="url" class="api-link"
+                                        href="/api/timesheets/000/stop"
+                                        data-event="kimai.timesheetStop kimai.timesheetUpdate" data-method="PATCH"
+                                        data-msg-error="timesheet.stop.error" data-msg-success="timesheet.stop.success">
+                                        <i class="far fa-stop-circle fa-2x"></i><span data-replacer="duration"
+                                            data-title="true" data-since="">00:00 h</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="messages-menu-empty" style="">
+                            <div class="ddt-small ticktac-single ticktac-stopped">
+                                <a accesskey="n" href="user-crtime.html">
+                                    <i class="fas fa-play fa-2x"></i>
+                                    <!-- <span>00:00 h</span> -->
+                                </a>
+                            </div>
+                        </li>
+                        <li class="dropdown notifications-menu">
+                            <a href="#" class="dropdown-toggle ddt-small" data-toggle="dropdown">
+                                <!--    <i class="fas fa-redo-alt fa-2x"></i> -->
+                            </a>
+                            <ul class="dropdown-menu" data-api="/api/timesheets/recent?size=10"
+                                data-href="/api/timesheets/000/restart" data-icon="far fa-play-circle"
+                                data-template="%activity% in %project% for %customer%">
+                                <li class="header">Restart one of your last activities</li>
+                                <li>
+                                    <ul class="menu">
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="test-time.php">Show all records</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown user-menu">
+                            <a href="#" class="dropdown-toggle ddt-small" data-toggle="dropdown">
+                                <span class="avatar " style="background-color: #c0c0c0; color: #000000">
+                                    <span class="initials">YU</span>
+                                </span>
+
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">
+                                        <h4 class="control-sidebar-subheading">
+                                            <i class="fas fa-user"></i>
+                                            My profile
+                                        </h4>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <h4 class="control-sidebar-subheading">
+                                            <i class="fas fa-user-edit"></i>
+                                            Edit
+                                        </h4>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <h4 class="control-sidebar-subheading">
+                                            <i class="fas fa-cog"></i>
+                                            Preferences
+                                        </h4>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="logout.php">
+                                        <h4 class="control-sidebar-subheading">
+                                            <i class="fas fa-sign-out-alt"></i>
+                                            Logout
+                                        </h4>
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#">
+                                        <h4 class="control-sidebar-subheading">
+                                            <i class="fas fa-info-circle"></i>
+                                            About TechTimer
+                                        </h4>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <aside class="main-sidebar">
+            <section class="sidebar">
+
+
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li id="dashboard" class=" active ">
+                        <a href="user-dash.html">
+                            <i class='fas fa-tachometer-alt'></i> <span>Dashboard</span>
+                        </a>
+
+                    </li>
+
+                    <li id="timesheet" class="  ">
+                        <a href="test-time.php">
+                            <i class="fas fa-clock"></i> <span>My times</span>
+                        </a>
+
+                    </li>
+
+                    <li id="admin" class="header">
+                        <i class=""></i>
+                        <span>Administration</span>
+
+                    </li>
+
+                    <li id="reporting" class="  ">
+                        <a href="user-report.html">
+                            <i class="far fa-chart-bar"></i> <span>Reporting</span>
+                        </a>
+
+                    </li>
+
+                    <li id="logout" class="  ">
+                        <a href="logout.php">
+                            <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+                        </a>
+
+                    </li>
+
+                </ul>
+            </section>
+        </aside>
+
+        <div class="content-wrapper">
+            <section class="content-header">
+                <h1>
+                    Dashboard <small>Welcome!</small>
+                </h1>
+
+            </section>
+
+
+            <div class="no-print">
+            </div>
+
+            <section class="content dashboard">
+
+
+
+
+                <div class="row">
+                    <div class="col-md-12 col-sm-24 col-xs-48">
+                        <div class="row">
+                            <div class="col-md-12">
+
+
+                                <div class="box box-secondary" id="PaginatedWorkingTimeChart" data-href="#"
+                                    data-reload="">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title"> My working hours </h3>
+                                        <div class="box-tools pull-right">
+                                            <ul class="pagination pagination-sm inline">
+                                                <li class="prev"><a onclick="destroyChart()"
+                                                        href="/en/widgets/working-time/2022/40" rel="prev"><i
+                                                            class="fas fa-chevron-left"></i></a></li>
+                                                <li class="next"><a onclick="destroyChart()"
+                                                        href="/en/widgets/working-time/2022/42" rel="next"><i
+                                                            class="fas fa-chevron-right"></i></a></li>
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                    <div class="box-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+
+                                                <div class="chart">
+                                                    <canvas id="DailyWorkingTimeChart_634b90007b6f1" style="width:50%;max-width:1000px"></canvas>
+                                                </div>
+                                                <script>
+                                                    var xValues = ["2022-11-07", "2022-11-08", "2022-11-09", "2022-11-10", "2022-11-11"];
+                                                    var yValues = [0, 10, 0, 0, 0];
+                                                    var barColors = ["blue","blue","blue","blue","blue"];
+                                                    
+                                                    new Chart("DailyWorkingTimeChart_634b90007b6f1", {
+                                                      type: "bar",
+                                                      data: {
+                                                        labels: xValues,
+                                                        datasets: [{
+                                                          backgroundColor: barColors,
+                                                          data: yValues
+                                                        }]
+                                                      },
+                                                      options: {
+                                                        legend: {display: false},
+                                                      }
+                                                    });
+                                                    </script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-footer">
+                                        <div class="row">
+                                            <div class="col-sm-3 col-xs-6">
+                                                <div class="description-block border-right">
+                                                    <h5 class="description-header">10:00 h</h5>
+                                                    <span class="description-text">Today, 2022-12-08</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3 col-xs-6">
+                                                <div class="description-block border-right">
+                                                    <h5 class="description-header">10:00 h</h5>
+                                                    <span class="description-text">Calendar week 45</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3 col-xs-6">
+                                                <div class="description-block border-right">
+                                                    <h5 class="description-header">10:00 h</h5>
+                                                    <span class="description-text">November 2022</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3 col-xs-6">
+                                                <div class="description-block border-right">
+                                                    <h5 class="description-header">10:00 h</h5>
+                                                    <span class="description-text">Full year 2022</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <script type="text/javascript">
+                            document.addEventListener('kimai.initialized', function () {
+                                KimaiPaginatedBoxWidget.create('#PaginatedWorkingTimeChart');
+                            });
+                        </script>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 col-xs-24">
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-24">
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script type="text/javascript">
+        window.addEventListener('load', function () {
+            const loader = new KimaiWebLoader({ formatDuration: '%h:%m h', formatDate: 'YYYY-MM-DD', defaultColor: '#d2d6de', twentyFourHours: true, updateBrowserTitle: true, login: 'Login.html', locale: 'en', first_dow_iso: 1, autoComplete: 3 }, { 'confirm': 'Confirm', 'cancel': 'Cancel', 'today': 'Today', 'yesterday': 'Yesterday', 'lastWeek': 'Last\u0020week', 'thisWeek': 'This\u0020week', 'lastMonth': 'Last\u0020month', 'thisMonth': 'This\u0020month', 'lastYear': 'Last\u0020year', 'thisYear': 'This\u0020year', 'customRange': 'Custom\u0020range', 'timesheet.start.success': 'Time\u0020recording\u0020was\u0020started', 'timesheet.start.error': 'Time\u0020recording\u0020could\u0020not\u0020be\u0020started', 'timesheet.start.exceeded_limit': 'The\u0020limit\u0020of\u0020active\u0020time\u0020records\u0020has\u0020been\u0020reached.\u0020Please\u0020stop\u0020at\u0020least\u0020one\u0020running\u0020time\u0020measurement\u0020first.', 'timesheet.stop.success': 'Time\u0020recording\u0020was\u0020stopped', 'timesheet.stop.error': 'Time\u0020recording\u0020could\u0020not\u0020be\u0020stopped', 'action.update.success': 'Saved\u0020changes', 'action.update.error': 'Changes\u0020could\u0020not\u0020be\u0020saved\u003A\u0020\u0025reason\u0025', 'action.delete.success': 'Entry\u0020was\u0020deleted', 'action.delete.error': 'Entry\u0020could\u0020not\u0020be\u0020deleted\u003A\u0020\u0025reason\u0025', 'confirm.delete': 'Do\u0020you\u0020really\u0020want\u0020to\u0020delete\u0020it\u003F', 'delete': 'Delete', 'login.required': 'Missing\u0020permission.\u0020Redirect\u0020to\u0020login\u003F', 'modal.dirty': 'The\u0020form\u0020has\u0020changed.\u0020Please\u0020click\u0020\u0022Save\u0022\u0020to\u0020save\u0020the\u0020changes\u0020or\u0020\u0022Close\u0022\u0020to\u0020cancel.' });
+            window.kimai = loader.getKimai();
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <script src="build/runtime.b8e7bb04.js"></script>
+    <script src="build/app.74a74ff6.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="apple-mobile-web-app-title" content="TechTimer 2">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="TechTimer 2">
+    <meta name="msapplication-config" content="/browserconfig.xml">
+
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <title>TechTimer – Time Tracking</title>
+    <link rel="stylesheet" href="build/app.dd7cccf4.css">
+
+</head>
+
+<body data-title="TechTimer&#x20;&#x2013;&#x20;Time&#x20;Tracking"
+    class="hold-transition skin-blue skin-blue fixed sidebar-mini">
+    <div class="modal" id="remote_form_modal" tabindex="-1" role="dialog" aria-labelledby="remote_form_modal_label">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="remote_form_modal_label"></h4>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper">
+
+        <header class="main-header">
+            <a href="user-main.html" class="logo">
+                <span class="logo-mini">
+                    <b>TT</b>
+                </span>
+                <span class="logo-lg">
+                    <b>TechTimer</b>
+                </span>
+            </a>
+
+            <nav class="navbar navbar-static-top" role="navigation">
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <li class="messages-menu " data-api="/api/timesheets/active"
+                            data-href="/api/timesheets/000/stop" data-icon="far fa-stop-circle" style="display:none">
+                            <div class="ddt-small ticktac-single ticktac-running">
+                                <div class="ticktac-stop">
+                                    <a accesskey="s" data-replacer="url" class="api-link"
+                                        href="/api/timesheets/000/stop"
+                                        data-event="kimai.timesheetStop kimai.timesheetUpdate" data-method="PATCH"
+                                        data-msg-error="timesheet.stop.error" data-msg-success="timesheet.stop.success">
+                                        <i class="far fa-stop-circle fa-2x"></i><span data-replacer="duration"
+                                            data-title="true" data-since="">00:00 h</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="messages-menu-empty" style="">
+                            <div class="ddt-small ticktac-single ticktac-stopped">
+                                <a accesskey="n" href="user-crtime.html">
+                                    <i class="fas fa-play fa-2x"></i>
+                                    <!-- <span>00:00 h</span> -->
+                                </a>
+                            </div>
+                        </li>
+                        <li class="dropdown notifications-menu">
+                            <a href="#" class="dropdown-toggle ddt-small" data-toggle="dropdown">
+                                <!-- <i class="fas fa-redo-alt fa-2x"></i> -->
+                            </a>
+                            <ul class="dropdown-menu" data-api="/api/timesheets/recent?size=10"
+                                data-href="/api/timesheets/000/restart" data-icon="far fa-play-circle"
+                                data-template="%activity% in %project% for %customer%">
+                                <li class="header">Restart one of your last activities</li>
+                                <li>
+                                    <ul class="menu">
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="test-time.php">Show all records</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown user-menu">
+                            <a href="#" class="dropdown-toggle ddt-small" data-toggle="dropdown">
+                                <span class="avatar " style="background-color: #c0c0c0; color: #000000">
+                                    <span class="initials">YU</span>
+                                </span>
+
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">
+                                        <h4 class="control-sidebar-subheading">
+                                            <i class="fas fa-user"></i>
+                                            My profile
+                                        </h4>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <h4 class="control-sidebar-subheading">
+                                            <i class="fas fa-user-edit"></i>
+                                            Edit
+                                        </h4>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <h4 class="control-sidebar-subheading">
+                                            <i class="fas fa-cog"></i>
+                                            Preferences
+                                        </h4>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="logout.php">
+                                        <h4 class="control-sidebar-subheading">
+                                            <i class="fas fa-sign-out-alt"></i>
+                                            Logout
+                                        </h4>
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#">
+                                        <h4 class="control-sidebar-subheading">
+                                            <i class="fas fa-info-circle"></i>
+                                            About TechTimer
+                                        </h4>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <aside class="main-sidebar">
+            <section class="sidebar">
+
+
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li id="dashboard" class="  ">
+                        <a href="user-dash.html">
+                            <i class="fas fa-tachometer-alt"></i> <span>Dashboard</span>
+                        </a>
+
+                    </li>
+
+                    <li id="timesheet" class=" active ">
+                        <a href="test-time.php">
+                            <i class="fas fa-clock"></i> <span>My times</span>
+                        </a>
+
+                    </li>
+
+                    </li>
+
+                    <li id="admin" class="header">
+                        <i class=""></i>
+                        <span>Administration</span>
+
+                    </li>
+
+                    <li id="reporting" class="  ">
+                        <a href="user-report.html">
+                            <i class="far fa-chart-bar"></i> <span>Reporting</span>
+                        </a>
+
+                    </li>
+
+                    <li id="logout" class="  ">
+                        <a href="logout.php">
+                            <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+                        </a>
+
+                    </li>
+
+                </ul>
+            </section>
+        </aside>
+
+        <div class="content-wrapper">
+            <section class="content-header">
+                <h1>
+                    My times <small></small>
+                </h1>
+
+                <div class="breadcrumb">
+                </div>
+            </section>
+
+
+            <div class="no-print">
+            </div>
+
+            <section class="content">
+
+                <div class="box box-primary">
+                    <form action="insert.php" method="post" name="timesheet_edit_form" enctype="multipart/form-data"
+                        data-form-event="kimai.timesheetUpdate" data-msg-success="action.update.success"
+                        data-msg-error="action.update.error">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">
+                                Create
+                            </h3>
+                        </div>
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="form-group"> <label class="control-label required"
+                                            for="from">From</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <a href="#"
+                                                    onclick="if (!jQuery('#from').is(':disabled')) { jQuery('#from').val(moment().format('YYYY-MM-DD HH:mm')).change(); }return false;"><i
+                                                        class="far fa-calendar-alt"></i></a>
+                                            </div>
+                                            <input type="text" id="from"
+                                                name="from" required="required"
+                                                data-datetimepicker="on" autocomplete="off"
+                                                placeholder="YYYY-MM-DD HH:MM" data-format="YYYY-MM-DD HH:mm"
+                                                data-time-picker-increment="1" class="form-control"
+                                                value="2022-11-08 10:00" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group"> <label class="control-label"
+                                            for="to">To</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <a href="#"
+                                                    onclick="if (!jQuery('#to').is(':disabled')) { jQuery('#to').val(moment().format('YYYY-MM-DD HH:mm')).change(); }return false;"><i
+                                                        class="far fa-calendar-alt"></i></a>
+                                            </div>
+                                            <input type="text" id="to"
+                                                name="to" data-datetimepicker="on"
+                                                autocomplete="off" placeholder="YYYY-MM-DD HH:MM"
+                                                data-format="YYYY-MM-DD HH:mm" data-time-picker-increment="1"
+                                                class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label class="control-label" for="duration">Duration</label>
+                                        <input type="text" id="duration"
+                                            name="duration" placeholder="0:00"
+                                            autofocus="autofocus" class="duration-input form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="timesheet_edit_form_row_project form-group"> <label
+                                    class="control-label required" for="project">Project</label>
+
+                                <select id="project" name="project"
+                                    required="required" class="selectpicker form-control" data-width="100%"
+                                    data-form-prefix="timesheet_edit_form"
+                                    data-related-select="activity"
+                                    data-api-url="/api/activities?project=%25project%25&amp;visible=1"
+                                    data-empty-url="/api/activities?globals=true&amp;visible=1"
+                                    data-option-pattern="{name}">
+                                    <option value="" selected="selected"></option>
+                                    <optgroup label="VTOP">
+                                        <option value="Faculty" data-customer="1" data-currency="INR">Faculty</option>
+                                        <option value="Student" data-customer="1" data-currency="INR">Student</option>
+                                        <option value="Administration" data-customer="1" data-currency="INR">Administration</option>
+                                    </optgroup>
+                                    <optgroup label="Servify">
+                                        <option value="App" data-customer="2" data-currency="INR">App</option>
+                                        <option value="Website" data-customer="2" data-currency="INR">Website</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                            <div class="timesheet_edit_form_row_activity form-group"> <label
+                                    class="control-label required" for="activity">Activity</label>
+
+                                <select id="activity" name="activity"
+                                    required="required" class="selectpicker form-control" data-width="100%"
+                                    data-option-pattern="{name}">
+                                    <option value="" selected="selected"></option>
+                                    <optgroup label="VTOP">
+                                        <option value="Course Page" data-customer="1" data-currency="INR">Course Page</option>
+                                        <option value="Assignment Upload" data-customer="1" data-currency="INR">Assignment Upload</option>
+                                        <option value="Exams" data-customer="1" data-currency="INR">Exams</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                            <div class="timesheet_edit_form_row_description form-group"> <label class="control-label"
+                                    for="description">Description</label>
+                                <textarea id="description" name="description"
+                                    class="form-control"></textarea>
+                            </div>
+                            <div class="timesheet_edit_form_row_tags form-group"> <label class="control-label"
+                                    for="tags">Tags</label>
+                                <input type="text" id="tags" name="tags"
+                                    data-autocomplete-url="/api/tags" class="js-autocomplete form-control"
+                                    autocomplete="off" />
+                            </div>
+                            <div id="timesheet_edit_form" data-form-event="kimai.timesheetUpdate"
+                                data-msg-success="action.update.success" data-msg-error="action.update.error">
+                                <div class="form-group">
+                                    <div id="timesheet_edit_form_metaFields"></div>
+                                </div> <input type="hidden" id="timesheet_edit_form__token"
+                                    name="timesheet_edit_form[_token]" class=" form-control"
+                                    value="hVHhe4iglzfWi09rfwvkiphjHtk53f13oBHx11leJ78" />
+                            </div>
+                        </div>
+                        <div class="box-footer">
+                            <input type="submit" name="submit" data-loading-text="Save…" value="Save" class="btn btn-primary" />
+                            <a href="user-dash.html" class="btn btn-link">Back</a>
+                            <input type="reset" value="Reset" class="btn btn-link pull-right" />
+                        </div>
+                    </form>
+                    <script type="text/javascript">
+                        jQuery('body').on('change', '#from', function (ev) {
+                            changedBegin(jQuery(this).val());
+                        });
+
+                        jQuery('body').on('change', '#to', function (ev) {
+                            changedEnd(jQuery(this).val());
+                        });
+
+                        jQuery('body').on('change', '#duration', function (ev) {
+                            changedDuration();
+                        });
+
+                        function getDurationField() {
+                            return document.getElementById('duration');
+                        }
+
+
+                        function changedBegin(value) {
+                            var endField = document.getElementById('to');
+                            var format = endField.dataset.format;
+                            var momentDuration = getParsedDuration();
+
+                            var momentBegin = moment(value, format);
+                            if (!momentBegin.isValid()) {
+                                setDurationAsString(null);
+                            }
+
+                            if (endField.value === '' && momentDuration.asSeconds() > 0) {
+                                applyDateToField(endField, momentBegin, format);
+                            }
+
+                            var momentEnd = moment(endField.value, format);
+                            if (!momentEnd.isValid()) {
+                                return;
+                            }
+
+                            if (momentEnd.isBefore(momentBegin)) {
+                                applyDateToField(endField, momentBegin.add(momentDuration), format);
+                            }
+
+                            momentBegin = moment(value, format);
+                            momentEnd = moment(endField.value, format);
+
+                            var durationMoment = moment.duration(momentEnd.diff(momentBegin));
+
+                            setDurationAsString(durationMoment);
+                        }
+
+
+                        function changedEnd(value) {
+                            var beginField = document.getElementById('from');
+                            var format = beginField.dataset.format;
+                            var momentDuration = getParsedDuration();
+
+                            var momentEnd = moment(value, format);
+                            if (!momentEnd.isValid()) {
+                                setDurationAsString(null);
+                            }
+
+                            if (beginField.value === '') {
+                                applyDateToField(beginField, momentEnd, format);
+                            }
+
+                            var momentBegin = moment(beginField.value, format);
+                            if (!momentBegin.isValid()) {
+                                return;
+                            }
+
+                            if (momentEnd.isBefore(momentBegin)) {
+                                applyDateToField(beginField, momentEnd.subtract(momentDuration), format);
+                            }
+
+                            momentBegin = moment(beginField.value, format);
+                            momentEnd = moment(value, format);
+
+                            var durationMoment = moment.duration(momentEnd.diff(momentBegin));
+
+                            setDurationAsString(durationMoment);
+                        }
+
+
+                        function changedDuration() {
+                            var momentDuration = getParsedDuration();
+                            if (!momentDuration.isValid()) {
+                                return;
+                            }
+
+                            var beginField = document.getElementById('from');
+                            var endField = document.getElementById('to');
+                            var format = endField.dataset.format;
+                            var begin = beginField.value;
+                            var end = endField.value;
+                            var duration = momentDuration.asSeconds();
+
+                            if (begin === '' && end === '') {
+                                applyDateToField(beginField, moment(), format);
+                                applyDateToField(endField, moment(beginField.value, format).add(duration, 'seconds'), format);
+                            } else if (begin === '' && end !== '') {
+                                applyDateToField(beginField, moment(end, format).subtract(duration, 'seconds'), format);
+                            } else if (begin !== '' && duration > 0) {
+                                applyDateToField(endField, moment(beginField.value, format).add(duration, 'seconds'), format);
+                            }
+                        }
+
+                        function setDurationAsString(durationMoment) {
+                            if (durationMoment === null) {
+                                getDurationField().value = '';
+                                return;
+                            }
+
+                            if (!durationMoment.isValid()) {
+                                return;
+                            }
+
+                            var hours = Math.floor(durationMoment.asHours());
+                            if (hours < 10) {
+                                hours = '0' + hours;
+                            }
+
+                            getDurationField().value = hours + ':' + ('0' + durationMoment.minutes()).slice(-2);
+                        }
+
+                        function getParsedDuration() {
+                            var duration = getDurationField().value.toUpperCase();
+                            var momentDuration = moment.duration(NaN);
+
+                            if (duration.indexOf(':') !== -1) {
+                                momentDuration = moment.duration(duration);
+                            } else if (duration.indexOf('.') !== -1 || duration.indexOf(',') !== -1) {
+                                duration = duration.replace(/,/, '.');
+                                duration = parseFloat(duration) * 3600;
+                                momentDuration = moment.duration('PT' + duration + 'S');
+                            } else if (duration.indexOf('H') !== -1 || duration.indexOf('M') !== -1 || duration.indexOf('S') !== -1) {
+                                momentDuration = moment.duration('PT' + duration);
+                            } else {
+                                let c = parseInt(duration);
+                                let d = parseInt(duration).toFixed();
+                                if (!isNaN(c) && duration === d) {
+                                    duration = c * 3600;
+                                    momentDuration = moment.duration('PT' + duration + 'S');
+                                }
+                            }
+
+                            return momentDuration;
+                        }
+
+                        function applyDateToField(field, momentObj, format) {
+                            field.value = momentObj.format(format);
+                            if (jQuery(field).data('daterangepicker') !== undefined) {
+                                jQuery(field).data('daterangepicker').setStartDate(momentObj);
+                                jQuery(field).data('daterangepicker').setEndDate(momentObj);
+                                jQuery('#timesheet_edit_form_customer').trigger('change');
+                            }
+                        }
+                    </script>
+                </div>
+            </section>
+
+
+        </div>
+
+        <!-- Page rendered on 2022-10-16 13:16 -->
+
+    </div>
+
+    <script type="text/javascript">
+        window.addEventListener('load', function () {
+            const loader = new KimaiWebLoader({ formatDuration: '%h:%m h', formatDate: 'YYYY-MM-DD', defaultColor: '#d2d6de', twentyFourHours: true, updateBrowserTitle: true, login: '/en/login', locale: 'en', first_dow_iso: 1, autoComplete: 3 }, { 'confirm': 'Confirm', 'cancel': 'Cancel', 'today': 'Today', 'yesterday': 'Yesterday', 'lastWeek': 'Last\u0020week', 'thisWeek': 'This\u0020week', 'lastMonth': 'Last\u0020month', 'thisMonth': 'This\u0020month', 'lastYear': 'Last\u0020year', 'thisYear': 'This\u0020year', 'customRange': 'Custom\u0020range', 'timesheet.start.success': 'Time\u0020recording\u0020was\u0020started', 'timesheet.start.error': 'Time\u0020recording\u0020could\u0020not\u0020be\u0020started', 'timesheet.start.exceeded_limit': 'The\u0020limit\u0020of\u0020active\u0020time\u0020records\u0020has\u0020been\u0020reached.\u0020Please\u0020stop\u0020at\u0020least\u0020one\u0020running\u0020time\u0020measurement\u0020first.', 'timesheet.stop.success': 'Time\u0020recording\u0020was\u0020stopped', 'timesheet.stop.error': 'Time\u0020recording\u0020could\u0020not\u0020be\u0020stopped', 'action.update.success': 'Saved\u0020changes', 'action.update.error': 'Changes\u0020could\u0020not\u0020be\u0020saved\u003A\u0020\u0025reason\u0025', 'action.delete.success': 'Entry\u0020was\u0020deleted', 'action.delete.error': 'Entry\u0020could\u0020not\u0020be\u0020deleted\u003A\u0020\u0025reason\u0025', 'confirm.delete': 'Do\u0020you\u0020really\u0020want\u0020to\u0020delete\u0020it\u003F', 'delete': 'Delete', 'login.required': 'Missing\u0020permission.\u0020Redirect\u0020to\u0020login\u003F', 'modal.dirty': 'The\u0020form\u0020has\u0020changed.\u0020Please\u0020click\u0020\u0022Save\u0022\u0020to\u0020save\u0020the\u0020changes\u0020or\u0020\u0022Close\u0022\u0020to\u0020cancel.' });
+            window.kimai = loader.getKimai();
+        });
+    </script>
+
+
+
+</body>
+
+</html>

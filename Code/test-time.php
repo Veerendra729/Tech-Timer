@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <script src="build/runtime.b8e7bb04.js"></script>
+    <script src="build/app.74a74ff6.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="apple-mobile-web-app-title" content="TechTimer 2">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="TechTimer 2">
+    <meta name="msapplication-config" content="/browserconfig.xml">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+    <title>TechTimer – Time Tracking</title>
+    <link rel="stylesheet" href="build/app.dd7cccf4.css">
+    <style>
+        table {
+            width: 100%;
+            margin: 0 auto;
+            font-family: sans-serif;
+            border: 2px solid black;
+        }
+        td {
+            background-color: white;
+            border: 1px solid black;
+        }
+        th,
+        td {
+            font-weight: bold;
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+ 
+        td {
+            font-weight: lighter;
+        }
+    </style>
+</head>
+
+<body data-title="TechTimer&#x20;&#x2013;&#x20;Time&#x20;Tracking"
+    class="hold-transition skin-blue skin-blue fixed sidebar-mini">
+    <div class="modal" id="remote_form_modal" tabindex="-1" role="dialog" aria-labelledby="remote_form_modal_label">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="remote_form_modal_label"></h4>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal_search" tabindex="-1" role="dialog" aria-labelledby="modal_search_label">
+        <div class="modal-dialog" role="document">
+            <form method="get" action="/en/timesheet/" class="form-narrow searchform form-horizontal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="modal_search_label">
+                            Search
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group"><label class="col-sm-3 col-xs-4 control-label" for="searchTerm">Search
+                                term</label>
+                            <div class="col-sm-9 col-xs-8"> <input type="text" id="searchTerm" name="searchTerm"
+                                    class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group"><label class="col-sm-3 col-xs-4 control-label" for="daterange">Time
+                                range</label>
+                            <div class="col-sm-9 col-xs-8">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="far fa-calendar-alt"></i>
+                                    </div>
+
+
+                                    <input type="text" id="daterange" name="daterange" autocomplete="off"
+                                        placeholder="YYYY-MM-DD - YYYY-MM-DD" data-format="YYYY-MM-DD"
+                                        data-separator=" - " data-daterangepickerenable="on" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group"><label class="col-sm-3 col-xs-4 control-label"
+                                for="customers">Customer</label>
+                            <div class="col-sm-9 col-xs-8">
+                                <select id="customers" name="customers[]" class="selectpicker form-control" size="1"
+                                    data-width="100%" data-form-prefix="" data-related-select="projects"
+                                    data-api-url="/api/projects?customers=%25customers%25&amp;visible=1&amp;ignoreDates=1"
+                                    data-empty-url="/api/projects?visible=1&amp;ignoreDates=1"
+                                    data-option-pattern="{name}" multiple="multiple">
+                                    <option value="1" data-currency="EUR">Random guy</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group"><label class="col-sm-3 col-xs-4 control-label"
+                                for="projects">Project</label>
+                            <div class="col-sm-9 col-xs-8">
+                                <select id="projects" name="projects[]" class="selectpicker form-control" size="1"
+                                    data-width="100%" data-form-prefix="" data-related-select="activities"
+                                    data-api-url="/api/activities?projects=%25projects%25&amp;visible=1"
+                                    data-empty-url="/api/activities?globals=true&amp;visible=1"
+                                    data-option-pattern="{name}" multiple="multiple">
+                                    <optgroup label="Random guy">
+                                        <option value="1" data-customer="1" data-currency="EUR">App</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group"><label class="col-sm-3 col-xs-4 control-label"
+                                for="activities">Activity</label>
+                            <div class="col-sm-9 col-xs-8">
+                                <select id="activities" name="activities[]" class="selectpicker form-control" size="1"
+                                    data-width="100%" data-option-pattern="{name}" multiple="multiple"></select>
+                            </div>
+                        </div>
+                        <div class="form-group"><label class="col-sm-3 col-xs-4 control-label" for="tags">Tags</label>
+                            <div class="col-sm-9 col-xs-8"> <input type="text" id="tags" name="tags"
+                                    data-autocomplete-url="/api/tags" class="js-autocomplete form-control"
+                                    autocomplete="off" />
+                            </div>
+                        </div>
+                        <div class="form-group"><label class="col-sm-3 col-xs-4 control-label"
+                                for="state">Records</label>
+                            <div class="col-sm-9 col-xs-8">
+                                <select id="state" name="state" class="selectpicker form-control" data-width="100%"
+                                    data-minimum-results-for-search="Infinity">
+                                    <option value="1" selected="selected">All</option>
+                                    <option value="2">Active</option>
+                                    <option value="3">Stopped</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group"><label class="col-sm-3 col-xs-4 control-label"
+                                for="billable">Billable</label>
+                            <div class="col-sm-9 col-xs-8">
+                                <select id="billable" name="billable" class="selectpicker form-control"
+                                    data-width="100%" data-minimum-results-for-search="Infinity">
+                                    <option value="0" selected="selected">All</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">No</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group"><label class="col-sm-3 col-xs-4 control-label"
+                                for="exported">Exported</label>
+                            <div class="col-sm-9 col-xs-8">
+                                <select id="exported" name="exported" class="selectpicker form-control"
+                                    data-width="100%" data-minimum-results-for-search="Infinity">
+                                    <option value="1" selected="selected">All</option>
+                                    <option value="4">Cleared</option>
+                                    <option value="5">Open</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group"><label class="col-sm-3 col-xs-4 control-label" for="pageSize">Page
+                                size</label>
+                            <div class="col-sm-9 col-xs-8">
+                                <select id="pageSize" name="pageSize" class="selectpicker form-control"
+                                    data-width="100%" data-minimum-results-for-search="Infinity">
+                                    <option value="10">10</option>
+                                    <option value="15">15</option>
+                                    <option value="20">20</option>
+                                    <option value="25">25</option>
+                                    <option value="30">30</option>
+                                    <option value="35">35</option>
+                                    <option value="40">40</option>
+                                    <option value="45">45</option>
+                                    <option value="50" selected="selected">50</option>
+                                    <option value="60">60</option>
+                                    <option value="70">70</option>
+                                    <option value="80">80</option>
+                                    <option value="90">90</option>
+                                    <option value="100">100</option>
+                                    <option value="125">125</option>
+                                    <option value="150">150</option>
+                                    <option value="175">175</option>
+                                    <option value="200">200</option>
+                                    <option value="250">250</option>
+                                    <option value="300">300</option>
+                                    <option value="350">350</option>
+                                    <option value="400">400</option>
+                                    <option value="450">450</option>
+                                    <option value="500">500</option>
+                                </select>
+                            </div>
+                        </div><input type="hidden" id="page" name="page" class=" form-control" value="1" />
+                        <div class="form-group">
+                            <label class="col-sm-3 col-xs-4 control-label required" for="orderBy">Order by</label>
+                            <div class="col-sm-5 col-xs-5">
+
+                                <select id="orderBy" name="orderBy" class="selectpicker form-control" data-width="100%"
+                                    data-minimum-results-for-search="Infinity">
+                                    <option value="begin" selected="selected">From</option>
+                                    <option value="end">To</option>
+                                    <option value="duration">Duration</option>
+                                    <option value="rate">Rate</option>
+                                    <option value="customer">Customer</option>
+                                    <option value="project">Project</option>
+                                    <option value="activity">Activity</option>
+                                    <option value="description">Description</option>
+                                </select>
+
+
+                            </div>
+                            <div class="col-sm-4 col-xs-3">
+
+                                <select id="order" name="order" class="selectpicker form-control" data-width="100%"
+                                    data-minimum-results-for-search="Infinity">
+                                    <option value="ASC">Ascending</option>
+                                    <option value="DESC" selected="selected">Descending</option>
+                                </select>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="btn-toolbar pull-left" role="toolbar">
+                            <input type="hidden" name="_token" value="ntrB4JxeAyNUUFvD3Ve_vyh7kTEWN-3G67Hv7XQopEE">
+                            <div class="btn-group">
+                                <button type="submit" name="performSearch" value="performSearch"
+                                    class="btn btn-primary pull-left" data-type="submit">Search</button>
+                            </div>
+                            <div class="btn-group">
+                                <button type="submit" id="setDefaultQuery" name="setDefaultQuery"
+                                    class="btn btn-default" title="Save setting as search favourite"><i
+                                        class="far fa-star"></i></button>
+                            </div>
+
+                        </div>
+                        <button type="button" class="btn btn-default btn-cancel" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="wrapper">
+
+        <header class="main-header">
+            <a href="user-main.html" class="logo">
+                <span class="logo-mini">
+                    <b>TT</b>
+                </span>
+                <span class="logo-lg">
+                    <b>TechTimer</b>
+                </span>
+            </a>
+
+            <nav class="navbar navbar-static-top" role="navigation">
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <li class="messages-menu " data-api="/api/timesheets/active"
+                            data-href="/api/timesheets/000/stop" data-icon="far fa-stop-circle" style="display:none">
+                            <div class="ddt-small ticktac-single ticktac-running">
+                                <div class="ticktac-stop">
+                                    <a accesskey="s" data-replacer="url" class="api-link"
+                                        href="/api/timesheets/000/stop"
+                                        data-event="kimai.timesheetStop kimai.timesheetUpdate" data-method="PATCH"
+                                        data-msg-error="timesheet.stop.error" data-msg-success="timesheet.stop.success">
+                                        <i class="far fa-stop-circle fa-2x"></i><span data-replacer="duration"
+                                            data-title="true" data-since="">00:00 h</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="messages-menu-empty" style="">
+                            <div class="ddt-small ticktac-single ticktac-stopped">
+                                <a accesskey="n" href="user-crtime.html">
+                                    <i class="fas fa-play fa-2x"></i>
+                                    <!-- <span>00:00 h</span> -->
+                                </a>
+                            </div>
+                        </li>
+                        <li class="dropdown notifications-menu">
+                            <a href="#" class="dropdown-toggle ddt-small" data-toggle="dropdown">
+                                <!-- <i class="fas fa-redo-alt fa-2x"></i> -->
+                            </a>
+                            <ul class="dropdown-menu" data-api="/api/timesheets/recent?size=10"
+                                data-href="/api/timesheets/000/restart" data-icon="far fa-play-circle"
+                                data-template="%activity% in %project% for %customer%">
+                                <li class="header">Restart one of your last activities</li>
+                                <li>
+                                    <ul class="menu">
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="user-time.html">Show all records</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown user-menu">
+                            <a href="#" class="dropdown-toggle ddt-small" data-toggle="dropdown">
+                                <span class="avatar " style="background-color: #c0c0c0; color: #000000">
+                                    <span class="initials">YU</span>
+                                </span>
+
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">
+                                        <h4 class="control-sidebar-subheading">
+                                            <i class="fas fa-user"></i>
+                                            My profile
+                                        </h4>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <h4 class="control-sidebar-subheading">
+                                            <i class="fas fa-user-edit"></i>
+                                            Edit
+                                        </h4>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <h4 class="control-sidebar-subheading">
+                                            <i class="fas fa-cog"></i>
+                                            Preferences
+                                        </h4>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="logout.php">
+                                        <h4 class="control-sidebar-subheading">
+                                            <i class="fas fa-sign-out-alt"></i>
+                                            Logout
+                                        </h4>
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#">
+                                        <h4 class="control-sidebar-subheading">
+                                            <i class="fas fa-info-circle"></i>
+                                            About TechTimer
+                                        </h4>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <aside class="main-sidebar">
+            <section class="sidebar">
+
+
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li id="dashboard" class="  ">
+                        <a href="user-dash-edit.html">
+                            <i class="fas fa-tachometer-alt"></i> <span>Dashboard</span>
+                        </a>
+
+                    </li>
+
+                    <li id="timesheet" class=" active ">
+                        <a href="test-time.php">
+                            <i class="fas fa-clock"></i> <span>My times</span>
+                        </a>
+
+
+                    </li>
+
+
+                    </li>
+
+                    <li id="admin" class="header">
+                        <i class=""></i>
+                        <span>Administration</span>
+
+                    </li>
+
+                    <li id="reporting" class="  ">
+                        <a href="user-report-edit.html">
+                            <i class="far fa-chart-bar"></i> <span>Reporting</span>
+                        </a>
+
+                    </li>
+
+                    <li id="logout" class="  ">
+                        <a href="logout.php">
+                            <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+                        </a>
+
+                    </li>
+
+                </ul>
+            </section>
+        </aside>
+
+        <div class="content-wrapper">
+            <section class="content-header">
+                <h1>
+                    My times <small></small>
+                </h1>
+
+                <div class="breadcrumb">
+                    <div class="box-tools">
+                        <div class="btn-group"><a class="btn btn-default btn-search" href="#" data-toggle="modal"
+                                data-target="#modal_search" accesskey="q"><i class="fas fa-search"></i></a><a
+                                class="btn btn-default btn-visibility" href="#" data-toggle="modal"
+                                data-target="#modal_timesheet"><i class="far fa-eye"></i></a><a
+                                class="btn btn-default btn-download toolbar-action modal-ajax-form" href="#"><i
+                                    class="fas fa-download"></i></a><a class="btn btn-default" href="user-crtime.html"
+                                accesskey="a"><i class="far fa-plus-square"></i></a><a class="btn btn-default btn-help"
+                                href="#" target="_blank" accesskey="h"><i class="far fa-question-circle"></i></a> </div>
+                    </div>
+                </div>
+            </section>
+            <br>
+            <br>
+            <?php
+ include('config.php');
+ # Prepare the SELECT Query
+  $selectSQL = 'SELECT * FROM times';
+  if( !( $selectRes = mysqli_query($link,$selectSQL) ) ){
+    echo 'Retrieval of data from Database Failed - #'.mysql_errno().': '.mysql_error();
+  }
+  else{
+    ?>
+<table>
+  <thead>
+    <tr>
+      <th>From</th>
+      <th>To</th>
+      <th>Duration</th>
+      <th>Project</th>
+      <th>Activity</th>
+      <th>Description</th>
+      <th>Tags</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+      if( mysqli_num_rows( $selectRes )==0 ){
+        echo '<tr><td colspan="4">No Rows Returned</td></tr>';
+      }else{
+        while( $row = mysqli_fetch_assoc( $selectRes ) ){
+          echo "<tr><td>{$row['Fromt']}</td><td>{$row['Tot']}</td><td>{$row['Duration']}</td><td>{$row['Project']}</td><td>{$row['Activity']}</td><td>{$row['Description']}</td><td>{$row['Tags']}</td></tr>\n";
+        }
+      }
+    ?>
+  </tbody>
+</table>
+    <?php
+  }
+?>
+            <div class="no-print">
+                <div class="modal fade" id="modal_timesheet" data-column-visibility="timesheet" tabindex="-1"
+                    role="dialog" aria-labelledby="data_table_modal_label">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="data_table_modal_label">Change column visibility</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>Upon saving the un-checked columns will be hidden and this setting will be stored in
+                                    a browser cookie. If you delete your cookies, the settings will be reversed.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary pull-left" data-type="save">Save</button>
+                                <button type="button" class="btn btn-warning pull-left"
+                                    data-type="reset">Delete</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <section class="content">
+
+
+               <!-- <div class="callout callout-warning lead">
+                    <p>No entries were found based on your selected filters.</p>
+                </div> -->
+
+                <script type="text/javascript">
+                    document.addEventListener('kimai.initialized', function () {
+                        KimaiReloadPageWidget.create('kimai.timesheetUpdate');
+                    });
+                </script>
+
+
+
+            </section>
+
+
+        </div>
+
+        <!-- Page rendered on 2022-10-16 13:33 -->
+
+    </div>
+
+    <script type="text/javascript">
+        window.addEventListener('load', function () {
+            const loader = new KimaiWebLoader({ formatDuration: '%h:%m h', formatDate: 'YYYY-MM-DD', defaultColor: '#d2d6de', twentyFourHours: true, updateBrowserTitle: true, login: '/en/login', locale: 'en', first_dow_iso: 1, autoComplete: 3 }, { 'confirm': 'Confirm', 'cancel': 'Cancel', 'today': 'Today', 'yesterday': 'Yesterday', 'lastWeek': 'Last\u0020week', 'thisWeek': 'This\u0020week', 'lastMonth': 'Last\u0020month', 'thisMonth': 'This\u0020month', 'lastYear': 'Last\u0020year', 'thisYear': 'This\u0020year', 'customRange': 'Custom\u0020range', 'timesheet.start.success': 'Time\u0020recording\u0020was\u0020started', 'timesheet.start.error': 'Time\u0020recording\u0020could\u0020not\u0020be\u0020started', 'timesheet.start.exceeded_limit': 'The\u0020limit\u0020of\u0020active\u0020time\u0020records\u0020has\u0020been\u0020reached.\u0020Please\u0020stop\u0020at\u0020least\u0020one\u0020running\u0020time\u0020measurement\u0020first.', 'timesheet.stop.success': 'Time\u0020recording\u0020was\u0020stopped', 'timesheet.stop.error': 'Time\u0020recording\u0020could\u0020not\u0020be\u0020stopped', 'action.update.success': 'Saved\u0020changes', 'action.update.error': 'Changes\u0020could\u0020not\u0020be\u0020saved\u003A\u0020\u0025reason\u0025', 'action.delete.success': 'Entry\u0020was\u0020deleted', 'action.delete.error': 'Entry\u0020could\u0020not\u0020be\u0020deleted\u003A\u0020\u0025reason\u0025', 'confirm.delete': 'Do\u0020you\u0020really\u0020want\u0020to\u0020delete\u0020it\u003F', 'delete': 'Delete', 'login.required': 'Missing\u0020permission.\u0020Redirect\u0020to\u0020login\u003F', 'modal.dirty': 'The\u0020form\u0020has\u0020changed.\u0020Please\u0020click\u0020\u0022Save\u0022\u0020to\u0020save\u0020the\u0020changes\u0020or\u0020\u0022Close\u0022\u0020to\u0020cancel.' });
+            window.kimai = loader.getKimai();
+        });
+    </script>
+
+
+
+</body>
+
+</html>

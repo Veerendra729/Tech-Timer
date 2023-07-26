@@ -1,0 +1,628 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+                <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    
+    <script src="/build/runtime.b8e7bb04.js"></script><script src="/build/app.74a74ff6.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="apple-mobile-web-app-title" content="Kimai 2">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content="Kimai 2">
+<meta name="msapplication-config" content="/browserconfig.xml">
+        
+
+    <script src="js1.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' 
+    crossorigin='anonymous'></script>
+    <title>TechTimer – Time Tracking</title>
+                <link rel="stylesheet" href="css1.css">
+    <link rel="stylesheet" href="calendar.25e7e872.css">
+</head>
+<body    data-title="TechTimer&#x20;&#x2013;&#x20;Time&#x20;Tracking"
+ class="hold-transition skin-blue skin-blue fixed sidebar-mini">
+    <div class="modal" id="remote_form_modal" tabindex="-1" role="dialog" aria-labelledby="remote_form_modal_label">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+                        <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="remote_form_modal_label"></h4>
+            </div>
+            <div class="modal-body">
+                
+            </div>
+            <div class="modal-footer">
+                
+            </div>
+                    </div>
+    </div>
+</div>
+    <div class="wrapper">
+
+    <header class="main-header">
+        <a href="user-main.html" class="logo">
+            <span class="logo-mini">
+                                <b>K</b>TT
+                </span>
+            <span class="logo-lg">
+                               <b>TechTimer</b>
+                </span>
+        </a>
+
+        <nav class="navbar navbar-static-top" role="navigation">
+                        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+                        <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                                                                                                                                                <li class="messages-menu " data-api="/api/timesheets/active" data-href="/api/timesheets/000/stop" data-icon="far fa-stop-circle" style="display:none">
+                                                        <div class="ddt-small ticktac-single ticktac-running">
+                        <div class="ticktac-stop">
+                            <a accesskey="s" data-replacer="url" class="api-link" href="/api/timesheets/000/stop" data-event="kimai.timesheetStop kimai.timesheetUpdate" data-method="PATCH" data-msg-error="timesheet.stop.error" data-msg-success="timesheet.stop.success">
+                                <i class="far fa-stop-circle fa-2x"></i><span data-replacer="duration" data-title="true" data-since="">00:00 h</span>
+                            </a>
+                        </div>
+                    </div>
+                            </li>
+            <li class="messages-menu-empty" style="">
+                                    <div class="ddt-small ticktac-single ticktac-stopped">
+                        <a accesskey="n" href="/en/timesheet/create" class="modal-ajax-form ticktac-start">
+                            <i class="fas fa-play fa-2x"></i>
+                            <span>00:00 h</span>
+                        </a>
+                    </div>
+                            </li>
+                                                                                                                                                                                                                                                                                    <li class="dropdown notifications-menu">
+        <a href="#" class="dropdown-toggle ddt-small" data-toggle="dropdown">
+            <i class="fas fa-redo-alt fa-2x"></i>
+        </a>
+        <ul class="dropdown-menu"
+            data-api="/api/timesheets/recent?size=10"
+            data-href="/api/timesheets/000/restart"
+            data-icon="far fa-play-circle"
+            data-template="%activity% in %project% for %customer%">
+            <li class="header">Restart one of your last activities</li>
+            <li>
+                <ul class="menu">
+                </ul>
+            </li>
+            <li class="footer"><a href="user-crtime.html">Show all records</a></li>
+        </ul>
+    </li>
+            <li class="dropdown user-menu">
+        <a href="#" class="dropdown-toggle ddt-small" data-toggle="dropdown">
+                                <span class="avatar " style="background-color: #c0c0c0; color: #000000">
+            <span class="initials">AM</span>
+        </span>
+    
+        </a>
+        <ul class="dropdown-menu">
+                                            <li>
+                    <a href="/en/profile/Aman">
+                        <h4 class="control-sidebar-subheading">
+                            <i class="fas fa-user"></i>
+                            My profile
+                        </h4>
+                    </a>
+                </li>
+                                                <li>
+                    <a href="/en/profile/Aman/edit">
+                        <h4 class="control-sidebar-subheading">
+                            <i class="fas fa-user-edit"></i>
+                            Edit
+                        </h4>
+                    </a>
+                </li>
+                                                <li>
+                    <a href="/en/profile/Aman/prefs">
+                        <h4 class="control-sidebar-subheading">
+                            <i class="fas fa-cog"></i>
+                            Preferences
+                        </h4>
+                    </a>
+                </li>
+                                <li>
+                    <a href="/en/logout">
+                        <h4 class="control-sidebar-subheading">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Logout
+                        </h4>
+                    </a>
+                </li>
+                                    <li class="divider"></li>
+            <li>
+                <a href="/en/about">
+                    <h4 class="control-sidebar-subheading">
+                        <i class="fas fa-info-circle"></i>
+                        About Kimai
+                    </h4>
+                </a>
+            </li>
+                    </ul>
+    </li>
+                                                                                                    </ul>
+            </div>
+        </nav>
+    </header>
+
+    <aside class="main-sidebar">
+        <section class="sidebar">
+            
+            
+                                                    <ul class="sidebar-menu" data-widget="tree">
+                            <li id="dashboard" class="  ">
+            <a href="user-dash.html">
+                 <i class="fas fa-tachometer-alt"></i>                                                 <span>Dashboard</span>
+            </a>
+
+                    </li>
+    
+                            <li id="timesheet" class="  ">
+            <a href="user-time.html">
+                 <i class="fas fa-clock"></i>                                                 <span>My times</span>
+            </a>
+
+                    </li>
+    
+                            <li id="calendar" class=" active ">
+            <a href="user-calender.html">
+                 <i class="far fa-calendar-alt"></i>                                                 <span>Calendar</span>
+            </a>
+
+                    </li>
+    
+                            <li id="admin" class="header">
+                <i class=""></i>
+    <span>Administration</span>
+    
+        </li>
+    
+                            <li id="reporting" class="  ">
+            <a href="/en/reporting/">
+                 <i class="far fa-chart-bar"></i>                                                 <span>Reporting</span>
+            </a>
+
+                    </li>
+    
+    </ul>
+                                    </section>
+    </aside>
+
+    <div class="content-wrapper">
+        <section class="content-header">
+            <h1>
+                Calendar                <small></small>
+            </h1>
+
+                        <div class="breadcrumb">
+        <div class="box-tools">
+                <div class="btn-group"><a class="btn btn-default btn-create modal-ajax-form" href="/en/timesheet/create" accesskey="a"        ><i class="far fa-plus-square"></i></a><a class="btn btn-default btn-help" href="https://www.kimai.org/documentation/calendar.html" target="_blank" accesskey="h"        ><i class="far fa-question-circle"></i></a>    </div>
+
+        </div>
+    </div>
+        </section>
+
+                
+    <div class="no-print">
+            </div>
+
+        <section class="content">
+                                    
+        <div class="row">
+                
+        <div class="col-xs-12 ">
+            
+
+        <div class="box box-secondary">
+        <div class="box-body no-padding">                    <div id="timesheet_calendar"></div>
+                </div>
+    </div>
+        </div>
+    </div>
+        
+                    </section>
+
+                    
+    </div>
+
+        <!-- Page rendered on 2022-10-17 20:07 -->
+                
+</div>
+
+                                    
+                        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            const loader = new KimaiWebLoader({formatDuration:'%h:%m h',formatDate:'YYYY-MM-DD',defaultColor:'#d2d6de',twentyFourHours:true,updateBrowserTitle:true,login:'/en/login',locale:'en',first_dow_iso:1,autoComplete:3},{'confirm': 'Confirm','cancel': 'Cancel','today': 'Today','yesterday': 'Yesterday','lastWeek': 'Last\u0020week','thisWeek': 'This\u0020week','lastMonth': 'Last\u0020month','thisMonth': 'This\u0020month','lastYear': 'Last\u0020year','thisYear': 'This\u0020year','customRange': 'Custom\u0020range','timesheet.start.success': 'Time\u0020recording\u0020was\u0020started','timesheet.start.error': 'Time\u0020recording\u0020could\u0020not\u0020be\u0020started','timesheet.start.exceeded_limit': 'The\u0020limit\u0020of\u0020active\u0020time\u0020records\u0020has\u0020been\u0020reached.\u0020Please\u0020stop\u0020at\u0020least\u0020one\u0020running\u0020time\u0020measurement\u0020first.','timesheet.stop.success': 'Time\u0020recording\u0020was\u0020stopped','timesheet.stop.error': 'Time\u0020recording\u0020could\u0020not\u0020be\u0020stopped','action.update.success': 'Saved\u0020changes','action.update.error': 'Changes\u0020could\u0020not\u0020be\u0020saved\u003A\u0020\u0025reason\u0025','action.delete.success': 'Entry\u0020was\u0020deleted','action.delete.error': 'Entry\u0020could\u0020not\u0020be\u0020deleted\u003A\u0020\u0025reason\u0025','confirm.delete': 'Do\u0020you\u0020really\u0020want\u0020to\u0020delete\u0020it\u003F','delete': 'Delete','login.required': 'Missing\u0020permission.\u0020Redirect\u0020to\u0020login\u003F','modal.dirty': 'The\u0020form\u0020has\u0020changed.\u0020Please\u0020click\u0020\u0022Save\u0022\u0020to\u0020save\u0020the\u0020changes\u0020or\u0020\u0022Close\u0022\u0020to\u0020cancel.'});
+            window.kimai = loader.getKimai();
+        });
+    </script>
+
+        
+
+    <script>
+        activatePopover();
+
+        document.addEventListener('kimai.initialized', function() {
+            KimaiReloadPageWidget.create('kimai.systemConfigUpdate', true);
+        });
+
+        document.addEventListener('kimai.timesheetUpdate', function() {
+            jQuery('#timesheet_calendar').fullCalendar('refetchEvents');
+        });
+
+                function calculateFontContrastColor(hexcolor)
+        {
+            if (hexcolor.slice(0, 1) === '#') {
+                hexcolor = hexcolor.slice(1);
+            }
+
+            if (hexcolor.length === 3) {
+                hexcolor = hexcolor.split('').map(function (hex) { return hex + hex; }).join('');
+            }
+
+            let r = parseInt(hexcolor.substr(0,2),16);
+            let g = parseInt(hexcolor.substr(2,2),16);
+            let b = parseInt(hexcolor.substr(4,2),16);
+            let yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
+
+            return (yiq >= 128) ? '#000000' : '#ffffff';
+        }
+
+        function convertApiTimesheetToCalendar(apiItem)
+        {
+            const defaultColor = kimai.getConfiguration().get('defaultColor');
+            let color = apiItem.activity.color;
+            if (color === null || color === defaultColor) {
+                color = apiItem.project.color;
+                if (color === null || color === defaultColor) {
+                    color = apiItem.project.customer.color;
+                }
+            }
+            if (color == null) {
+                color = defaultColor;
+            }
+
+            let title = apiItem.activity.name;
+
+            let description = '';
+            if (apiItem.description !== null && apiItem.description !== '') {
+                description = ' - ' + apiItem.description;
+            }
+
+            
+            if (title === '' || title === null) {
+                title = apiItem.activity.name;
+            }
+
+            return {
+                id: apiItem.id,
+                title: title,
+                description: apiItem.description,
+                start: apiItem.begin,
+                end: apiItem.end,
+                activity: apiItem.activity.name,
+                project: apiItem.project.name,
+                customer: apiItem.project.customer.name,
+                tags: apiItem.tags,
+                color: color,
+                textColor: calculateFontContrastColor(color),
+            };
+        }
+
+        function renderEventPopoverTitle(eventObj)
+        {
+            return eventObj.start.format('L') + ' | ' + eventObj.start.format('LT') + ' - ' + (eventObj.end ? eventObj.end.format('LT') : '');
+        }
+
+        function renderEventPopoverContent(eventObj)
+        {
+            const escaper = kimai.getPlugin('escape');
+
+            return '<div class="calendar-entry">' +
+                    '<ul>' +
+                        '<li>' + 'Customer: ' + escaper.escapeForHtml(eventObj.customer) + '</li>' +
+                        '<li>' + 'Project: ' + escaper.escapeForHtml(eventObj.project) + '</li>' +
+                        '<li>' + 'Activity: ' + escaper.escapeForHtml(eventObj.activity) + '</li>' +
+                    '</ul>' +
+                    (eventObj.description !== null || eventObj.tags.length > 0 ? '<hr>' : '') +
+                    (eventObj.description ? '<p>' + eventObj.description + '</p>' : '') +
+                    (eventObj.tags !== null && eventObj.tags.length > 0 ? '<span class="badge bg-green">' + eventObj.tags.join('</span> <span class="badge bg-green">') + '</span>' : '') +
+                '</div>'
+            ;
+        }
+
+        function showPopover()
+        {
+            return window._hidePopovers === false;
+        }
+
+        function activatePopover()
+        {
+            window._hidePopovers = false;
+        }
+
+        function deactivatePopover()
+        {
+            window._hidePopovers = true;
+        }
+
+        function hidePopover()
+        {
+            jQuery('.popover').popover('hide');
+        }
+
+        let changeHandler = function(event, delta, revertFunc) {
+            let updateUrl = '/api/timesheets/-XX-'.replace('-XX-', event.id);
+            let API = kimai.getPlugin('api');
+            let ALERT = kimai.getPlugin('alert');
+
+            let payload = {'begin': event.start.format()};
+
+            if (event.end !== null && event.end !== undefined) {
+                payload.end = event.end.format();
+            } else {
+                payload.end = null;
+            }
+
+            API.patch(updateUrl, JSON.stringify(payload), function(result) {
+                ALERT.success('action.update.success');
+            }, function(xhr, err) {
+                const callback = API.getPatchErrorHandler();
+                revertFunc();
+                callback(xhr, err);
+            });
+        };
+
+        document.addEventListener('kimai.initialized', function(event) {
+            // prevent multiple open popovers
+            jQuery('html').on('click', function(e) {
+                jQuery('.popover').each(function() {
+                    if(jQuery(e.target).parents(".fc-time-grid-event").get(0) !== $(this).prev().get(0)) {
+                        jQuery(this).popover('hide');
+                    }
+                });
+            });
+
+                        jQuery('.external-events .external-event').each(function () {
+                                jQuery(this).draggable({
+                    zIndex        : 1070,
+                    revert        : true,                       revertDuration: 0                       });
+            });
+
+            let kimai = event.detail.kimai;
+            let API = kimai.getPlugin('api');
+            let DATES = kimai.getPlugin('date');
+            jQuery('#timesheet_calendar').fullCalendar({
+                themeSystem: 'bootstrap3',
+                defaultView: 'month',
+                                header    : {
+                    left  : 'prev,next today deleteButton',
+                    center: 'title',
+                    right : 'month,agendaWeek,agendaDay'
+                },
+                dragRevertDuration: 0,
+                eventLimit: 4,
+                weekNumbersWithinDays: true,
+                weekNumberCalculation: 'ISO',
+                weekNumbers: true,
+                allDaySlot: false,
+                navLinks: true,
+                locale: kimai.getConfiguration().get('locale').replace('_', '-').toLowerCase(),
+                firstDay: kimai.getConfiguration().get('first_dow_iso'),
+                customButtons: {
+                    deleteButton: {
+                        text: 'Delete',
+                        click: function() {
+                            kimai.getPlugin('alert').info('If you want to delete an entry, you must drag it onto the button.');
+                        }
+                    }
+                },
+                height: 'auto',
+                nowIndicator: true,
+                now: '2022-10-17T20:07:23+05:00',
+                                timezone: 'Indian/Maldives',
+                weekends: true,
+                businessHours: {
+                    dow: [1,2,3,4,5],
+                    start: '08:00',
+                    end: '20:00'
+                },
+                slotDuration: '00:30:00',
+                slotLabelInterval: '00:30:00',
+                minTime: '00:00',
+                maxTime: '23:59',
+                defaultTimedEventDuration: '00:30:00',                  droppable: true,
+                                drop: function (date, jsEvent, ui, resourceId) {
+                    let entry = jsEvent.target;
+                    let source = entry.parentElement;
+                    let plainData = entry.dataset.entry;
+                    let data = JSON.parse(plainData);
+                                        let urlReplacer = JSON.parse(source.dataset.routeReplacer);
+                    let apiUrl = source.dataset.route;
+
+                    for (const [key, value] of Object.entries(urlReplacer)) {
+                        apiUrl = apiUrl.replace(key, data[value]);
+                    }
+
+                    let view = jQuery('#timesheet_calendar').fullCalendar('getView');
+                    let begin = date.clone();
+
+                    
+                    
+                    if (view.name === 'month' && !begin.hasTime()) {
+                        begin.time('08:07:23');
+                    }
+
+                    let end = begin.clone();
+                    end.add(moment.duration('00:30:00'));
+
+                                                                        data.begin = begin.format();
+                                                                            data.end = end.format();
+                                            
+                    if (source.dataset.method === 'PATCH') {
+                        API.patch(
+                            apiUrl,
+                            JSON.stringify(data),
+                            function (result) {
+                                kimai.getPlugin('alert').success('action.update.success');
+                                let newItem = convertApiTimesheetToCalendar(result);
+                                jQuery('#timesheet_calendar').fullCalendar('renderEvent', newItem);
+                            }
+                        );
+                    } else {
+                        API.post(
+                            apiUrl,
+                            JSON.stringify(data),
+                            function (result) {
+                                kimai.getPlugin('alert').success('action.update.success');
+                                let newItem = convertApiTimesheetToCalendar(result);
+                                jQuery('#timesheet_calendar').fullCalendar('renderEvent', newItem);
+                            }
+                        );
+                    }
+                },
+                eventSources: [
+                    {
+                        events: function(start, end, timezone, callback) {
+                            let from = moment(start.format()).format(moment.HTML5_FMT.DATETIME_LOCAL_SECONDS);
+                            let to = moment(end.format()).format(moment.HTML5_FMT.DATETIME_LOCAL_SECONDS);
+                            API.get('/api/timesheets?user=7&size=1000&full=true&begin='+from+'&end='+to, {}, function(result) {
+                                let apiEvents = [];
+                                for (const record of result) {
+                                    apiEvents.push(convertApiTimesheetToCalendar(record));
+                                }
+                                callback(apiEvents);
+                            });
+                        },
+                        color: '#d2d6de',
+                        name: 'kimaiUserTimeSource'
+                    }
+                                    ],
+                eventRender: function(eventObj, $el, view) {
+                                        if (eventObj.source.ajaxSettings !== undefined) {
+                        return;
+                    }
+
+                                        if (!showPopover()) {
+                        return;
+                    }
+
+                    if (view.name !== 'month' ) {
+                        jQuery(".fc-dailytotal").text(DATES.formatSeconds(0)).data('seconds', 0).data('ids', '');
+                    }
+
+                    hidePopover();
+                    $el.popover({
+                        title: renderEventPopoverTitle(eventObj),
+                        content: renderEventPopoverContent(eventObj),
+                        trigger: 'hover',
+                        placement: 'auto',
+                        container: 'body',
+                        html: true
+                    });
+                },
+                viewRender: function(view, element) {
+                    if (view.name === 'month') {
+                        return;
+                    }
+
+                                        jQuery(".fc-day-header").each(function (key, val) {
+                        var $this = jQuery(this);
+                        var dateYMD = $this.attr("data-date");
+                        $this.append('<div class="fc-dailytotal" data-seconds="0" data-ids="" id="dailytotal-' + dateYMD + '">'+DATES.formatSeconds(0)+'</div>');
+                    });
+                },
+                eventAfterRender: function(event, element, view) {
+                                        if (view.name === 'month') {
+                        return;
+                    }
+
+                                        if (event.end === null) {
+                        return;
+                    }
+
+                                        var $element = jQuery("#dailytotal-" + moment(event.start).format("YYYY-MM-DD"));
+                    var ids = $element.data('ids');
+                    if (ids === null || ids === undefined) {
+                        ids = '';
+                    }
+
+                    if (ids.indexOf(event.id) !== -1) {
+                        return;
+                    }
+
+                    var prev = $element.data('seconds');
+                    var duration = prev + ((event.end - event.start) / 1000);
+                    $element.data('seconds', duration);
+                    $element.data('ids', event.id + ' ' + ids);
+                    $element.text(DATES.formatSeconds(duration));
+                },
+                                    dayClick: function(date, jsEvent, view) {
+                                                if (view.type !== 'month') {
+                            return;
+                        }
+
+                        let createUrl = '/en/timesheet/create?begin=' + date.format() + '';
+                        kimai.getPlugin('modal').openUrlInModal(createUrl);
+                    },
+                    selectable: true,
+                    select: function(start, end, jsEvent, view) {
+                        if(view.type === 'month') {
+                                                        return;
+                        }
+                        let createUrl = '/en/timesheet/create' + '?from=' + start.format() + '&to=' + end.format() + '';
+                        kimai.getPlugin('modal').openUrlInModal(createUrl);
+                    },
+                                                    eventClick: function(eventObj, jsEvent, view) {
+                        if (eventObj.source.ajaxSettings !== undefined) {
+                            jsEvent.preventDefault();
+                            return;
+                        }
+                        let editUrl = '/en/timesheet/-XX-/edit'.replace('-XX-', eventObj.id);
+                        kimai.getPlugin('modal').openUrlInModal(editUrl);
+                    },
+                                            editable: true,
+                        eventDragStart: function(event, jsEvent, ui, view) {
+                            deactivatePopover();
+                        },
+                        eventDragStop: function(event, jsEvent, ui, view) {
+                            activatePopover();
+                                                            var trash = jQuery('.fc-deleteButton-button');
+                                var offset = trash.offset();
+
+                                if (jsEvent.pageX >= offset.left && jsEvent.pageX<= (offset.left + trash.outerWidth(true)) &&
+                                    jsEvent.pageY >= offset.top && jsEvent.pageY <= (offset.top + trash.outerHeight(true))) {
+                                    API.delete(
+                                        '/api/timesheets/__xxx__'.replace('__xxx__', event.id),
+                                        function () {
+                                            kimai.getPlugin('alert').success('action.delete.success');
+                                            jQuery('#timesheet_calendar').fullCalendar('removeEvents', event._id);
+                                        }, function () {
+                                            kimai.getPlugin('alert').success('action.delete.error');
+                                        }
+                                    );
+                                }
+                                                    },
+                        eventDrop: changeHandler,
+                        eventResizeStart: function(event, jsEvent, ui, view) {
+                            deactivatePopover();
+                        },
+                        eventResizeStop: function(event, jsEvent, ui, view) {
+                            activatePopover();
+                        },
+                        eventResize: changeHandler,
+                                                });
+            var trashBtn = jQuery('.fc-deleteButton-button');
+            trashBtn.html('<span class="text-danger"><i class="far fa-trash-alt text-danger"></i> ' + trashBtn.text() + '</span>');
+        });
+    </script>
+
+</body>
+</html>
